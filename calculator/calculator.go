@@ -1,26 +1,25 @@
 package calculator
 
+import (
+	"errors"
+)
+
 func Add(a int, b int) int {
 	return a + b
 }
 
-func sub(a int, b int) int {
+func Sub(a int, b int) int {
 	return a - b
 }
 
-func mul(a int, b int) int {
+func Mul(a int, b int) int {
 	return a * b
 }
 
-func div(a int, b int) int {
-	if(b == 0) {
-		return 0
+func Div(a int, b int) (int, error) {
+	if b == 0 {
+		return 0, errors.New("Division by Zero")
 	} else {
-		return a / b
+		return a / b, nil
 	}
 }
-
-
-
-
-

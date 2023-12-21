@@ -57,5 +57,5 @@ func main() {
 	router.GET("/trace", getTrace)
 	router.GET("/results", getResults)
 	router.POST("/calc", addCalculation)
-	router.Run("localhost:8080")
+	router.Run(":8080")
 }

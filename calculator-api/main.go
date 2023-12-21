@@ -13,7 +13,7 @@ type calculation struct {
 	A         int    `json:"a"`
 	B         int    `json:"b"`
 	Operation string `json:"operation"`
-	Result    int    `json:"result"`
+	Result    int    `json:"result,omitempty"`
 }
 
 var calculatorTrace = []calculation{
@@ -44,6 +44,11 @@ func addCalculation(c *gin.Context) {
 	var newCalc calculation
 	c.BindJSON(&newCalc)
 	calculatorTrace = append(calculatorTrace, newCalc)
+	result, err := calculator.Calc(newCalc.A, newCalc.B, newCalc.Operation)
+	if err != nil {
+		log.Fatal(err)
+	}
+	newCalc.Result = result
 	c.IndentedJSON(http.StatusOK, newCalc)
 }
 
